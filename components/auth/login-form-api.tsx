@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,15 +20,15 @@ import { LoginSchema } from "@/schemas";
 import { Input } from "../ui/input";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
-import { login } from "@/actions/login";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-const LoginForm = () => {
+const LoginFormAPI = () => {
 	const [error, setError] = useState<string | undefined>("");
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
-
+	const router = useRouter();
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
@@ -37,19 +37,33 @@ const LoginForm = () => {
 		},
 	});
 
-	const onSubmitLogin = (values: z.infer<typeof LoginSchema>) => {
-		setError("");
-		setSuccess("");
-		startTransition(() => {
-			login(values).then((data) => {
-				setError(data?.error);
-				setSuccess(data?.success);
+	const onSubmitLogin = async (values: z.infer<typeof LoginSchema>) => {
+		try {
+			console.log(values);
+			startTransition(async () => {
+				try {
+					const response = await axios.post("/api/users/login", values);
+					// console.log(response.data);
+					toast.success("You are logged in");
+					router.push(`/dashboard`);
+				} catch (error: any) {
+					console.log(error);
+					if (error.response) {
+						const errorMessage = error.response.data;
+						toast.error(errorMessage);
+					} else {
+						toast.error("Something went wrong");
+					}
+				}
 			});
-		});
+		} catch (error) {
+			console.log("Error occurred outside of startTransition:", error);
+			// Handle error occurred outside of startTransition
+		}
 	};
 	return (
 		<CardWrapper
-			headerLabel="Welcome back"
+			headerLabel="Welcome back login using ERP"
 			// backButtonLabel="Don`t have an account ?"
 			backButtonHref="/auth/register"
 			showSocial
@@ -91,14 +105,6 @@ const LoginForm = () => {
 										/>
 									</FormControl>
 
-									{/* <Button
-										size="sm"
-										variant="link"
-										asChild
-										className="px-0 font-normal"
-									>
-										<Link href="/auth/reset">Forget password?</Link>
-									</Button> */}
 									<FormMessage />
 								</FormItem>
 							)}
@@ -116,4 +122,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm;
+export default LoginFormAPI;

@@ -8,6 +8,7 @@ export const publicRoutes = [
 	"/about",
 	"/home",
 	"/search",
+	"/basket",
 	"/product-detail",
 ];
 
@@ -22,7 +23,7 @@ export const authRoutes = ["/login"];
  *The prefix for API authentication
  * Routes that start with this prefix are user for API authentication purposes
  */
-export const apiAuthPrefix = "/api/auth";
+export const apiAuthPrefix = "/api/";
 
 /**
  * The default redirect path after logging in

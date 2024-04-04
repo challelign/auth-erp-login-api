@@ -1,14 +1,10 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
-import Header from "@/components/Header";
 import { getAllProducts } from "@/actions/getProducts";
-import { Instagram } from "react-content-loader";
 import Pagination from "@/components/pagination";
 
 import { GridOption } from "@/components/GridOption";
-import { getProductsByCategory } from "@/actions/getProductByCategory";
-import { fakeDataImage } from "@/data/fakeData";
 import { Skeleton } from "@/components/ui/skeleton";
 import ErrorLoading from "@/components/ErrorLoading";
 const font = Poppins({
@@ -53,7 +49,7 @@ export default async function Home({ searchParams }: SearchPageProps) {
 		<>
 			{/* <Header /> */}
 
-			<main>
+			<main className="flex-1">
 				<div className="grid grid-cols-1 grid-flow-row-dense md:grid-cols-3 shadow-md gap-6 m-6">
 					{product?.products.map((pro: any, index: number) => (
 						<GridOption

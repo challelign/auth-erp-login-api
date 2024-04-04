@@ -9,13 +9,5 @@ export interface ProductsTypings {
 	brand: string;
 	category: string;
 	thumbnail: string;
-	images: string;
-	result: Result[];
-}
-export interface Result {
-	content: Content;
-}
-export interface Content {
-	image: string;
-	total: number;
+	images: [];
 }

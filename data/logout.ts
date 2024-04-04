@@ -6,7 +6,7 @@ export const logout = async () => {
 	const token = cookieStore.get("Authorization")?.value || "";
 	if (token) {
 		cookies().delete("Authorization");
-		redirect("/login");
+		await redirect("/login");
 	}
 	return null;
 };

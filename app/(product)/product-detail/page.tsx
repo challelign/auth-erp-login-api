@@ -8,6 +8,7 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
+import AddToCart from "@/components/add-to-cart";
 interface Props {
 	searchParams: {
 		url: string;
@@ -92,6 +93,7 @@ const ProductDetailPage = async ({ searchParams: { url } }: Props) => {
 					<p className="text-2xl font-bold mt-2">${product.price}</p>
 
 					{/* Add to Cart button */}
+					<AddToCart product={product} />
 					<hr />
 				</div>
 			</div>
