@@ -4,7 +4,7 @@ import { devtools, persist } from "zustand/middleware";
 // import type {} from "@redux-devtools/extension"; // required for devtools typing
 
 interface CartState {
-	cart: Product[];
+	cart: Product[] | null;
 	addToCart: (product: Product) => void;
 	removeFromProduct: (product: Product) => void;
 }

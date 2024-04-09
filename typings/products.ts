@@ -9,5 +9,5 @@ export interface ProductsTypings {
 	brand: string;
 	category: string;
 	thumbnail: string;
-	images: [];
+	images: string[]; // Assuming the images are URLs represented as strings
 }

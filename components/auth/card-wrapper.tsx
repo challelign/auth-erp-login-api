@@ -15,24 +15,24 @@ import Header from "./header";
 interface CardWrapperProps {
 	children: React.ReactNode;
 	headerLabel: string;
-	backButtonLabel: string;
+	// backButtonLabel: string;
 	backButtonHref: string;
-	showSocial?: boolean;
+	// showSocial?: boolean;
 }
 const CardWrapper = ({
 	children,
 	headerLabel,
-	backButtonLabel,
+	// backButtonLabel,
 	backButtonHref,
-	showSocial,
-}: CardWrapperProps) => {
+}: // showSocial,
+CardWrapperProps) => {
 	return (
 		<Card className="w-[400px] shadow-md pt-3 gap-y-3">
 			<CardHeader>
 				<Header label={headerLabel} />
 			</CardHeader>
 			<CardContent>{children}</CardContent>
-			{showSocial && <CardFooter>{/* <Social /> */}</CardFooter>}
+			{/* {showSocial && <CardFooter><Social /></CardFooter>} */}
 			{/* <CardFooter>
 				<BackButton label={backButtonLabel} href={backButtonHref} />
 			</CardFooter> */}

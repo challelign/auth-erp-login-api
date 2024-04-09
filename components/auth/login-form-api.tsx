@@ -66,10 +66,13 @@ const LoginFormAPI = () => {
 			headerLabel="Welcome back login using ERP"
 			// backButtonLabel="Don`t have an account ?"
 			backButtonHref="/auth/register"
-			showSocial
+			// showSocial
 		>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmitLogin)} className="space-y-6">
+				<form
+					onSubmit={form.handleSubmit(onSubmitLogin)}
+					className="space-y-6 "
+				>
 					<div className="space-y-6">
 						<FormField
 							control={form.control}

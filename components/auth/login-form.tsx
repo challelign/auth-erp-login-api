@@ -43,7 +43,7 @@ const LoginForm = () => {
 		startTransition(() => {
 			login(values).then((data) => {
 				setError(data?.error);
-				setSuccess(data?.success);
+				// setSuccess(data?.success);
 			});
 		});
 	};
@@ -52,7 +52,7 @@ const LoginForm = () => {
 			headerLabel="Welcome back"
 			// backButtonLabel="Don`t have an account ?"
 			backButtonHref="/auth/register"
-			showSocial
+			// showSocial
 		>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmitLogin)} className="space-y-6">
@@ -91,14 +91,14 @@ const LoginForm = () => {
 										/>
 									</FormControl>
 
-									{/* <Button
+									<Button
 										size="sm"
 										variant="link"
 										asChild
 										className="px-0 font-normal"
 									>
 										<Link href="/auth/reset">Forget password?</Link>
-									</Button> */}
+									</Button>
 									<FormMessage />
 								</FormItem>
 							)}

@@ -27,7 +27,7 @@ const Basket = () => {
 							key={prID}
 							className="p-3 my-1 flex items-center justify-between"
 						>
-							{item.images[0] && (
+							{item?.images[0] && (
 								<Image
 									src={item.images[0]}
 									alt={item.title}

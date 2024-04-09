@@ -5,11 +5,12 @@ import { LoginSchema } from "@/schemas";
 import axios from "axios";
 import { cookies } from "next/headers";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request, res: Response): Promise<Response> {
 	try {
 		const validatedFields = LoginSchema.safeParse(await req.json());
 		if (!validatedFields.success) {
-			return { error: "Invalid fields!" };
+			// return { error: "Invalid fields!" };
+			return new NextResponse("Invalid fields! ", { status: 404 });
 		}
 		const { username, password } = validatedFields.data;
 
